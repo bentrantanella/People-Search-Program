@@ -7,7 +7,7 @@ public class SearchGUI extends GBFrame {
 	public static void main(String[] args) {
 		JFrame frm = new SearchGUI();
 		frm.setTitle("People Search");
-		frm.setSize(300, 300);
+		frm.setSize(600, 200);
 		frm.setVisible(true);
 		
 	}
@@ -51,11 +51,20 @@ public class SearchGUI extends GBFrame {
 					temparr[i] = finalarr[i];
 				
 				finalarr = new People[arrcount + 1];
+				for(int i = 0; i < finalarr.length - 1; i++)
+					finalarr[i] = temparr[i];
+				
 				finalarr[arrcount] = p;
+				
+				
 			}
 			
 			
 			arrcount++;
+			
+			seqSearchButton.setEnabled(true);
+			binSearchButton.setEnabled(true);
+			printButton.setEnabled(true);
 			
 		}
 		
@@ -68,7 +77,13 @@ public class SearchGUI extends GBFrame {
 		}
 		
 		if (button == printButton) {
+			String output = "";
 			
+			for(int i = 0; i < finalarr.length; i++) {
+				output += finalarr[i].getName() + ", " + finalarr[i].getAge() + "\n";
+			}
+			
+			messageBox(output);
 		}
 	}
 	
