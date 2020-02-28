@@ -7,9 +7,8 @@ public class SearchGUI extends GBFrame {
 	public static void main(String[] args) {
 		JFrame frm = new SearchGUI();
 		frm.setTitle("People Search");
-		frm.setSize(600, 200);
+		frm.setSize(700, 400);
 		frm.setVisible(true);
-		
 	}
 
 	
@@ -20,16 +19,19 @@ public class SearchGUI extends GBFrame {
 	IntegerField ageField = addIntegerField(0,2,4,1,1);
 	JButton addButton = addButton("Add",2,5,1,1);
 	
-	JButton seqSearchButton = addButton("Sequential Search",3,1,1,1);
-	JButton binSearchButton = addButton("Binary Search",3,2,1,1);
-	JButton printButton = addButton("Print",3,3,1,1);
+	JLabel searchLabel = addLabel("Search: ",3,1,1,1);
+	JTextField searchField = addTextField("",3,2,1,1);
+	JButton seqSearchButton = addButton("Sequential Search",3,3,2,1);
+	JButton binSearchButton = addButton("Binary Search",3,5,1,1);
+	JButton printButton = addButton("Print Alphabetically",7,1,2,1);
 	
-	JTextArea outputArea = addTextArea("",4,1,4,1);
+	JTextArea outputArea = addTextArea("",4,1,5,3);
 	
 	public SearchGUI() {
 		seqSearchButton.setEnabled(false);
 		binSearchButton.setEnabled(false);
 		printButton.setEnabled(false);
+		searchField.setEditable(false);
 	}
 	
 	String output = "";
@@ -53,6 +55,7 @@ public class SearchGUI extends GBFrame {
 			seqSearchButton.setEnabled(true);
 			binSearchButton.setEnabled(true);
 			printButton.setEnabled(true);
+			searchField.setEditable(true);
 			
 		}
 		
@@ -70,7 +73,7 @@ public class SearchGUI extends GBFrame {
 			
 			String out = "";
 			for(int i = 0; i < arr.length; i++) {
-				out += arr[i].getName();
+				out += arr[i].getName() + ", " + arr[i].getAge() + "\n\n";
 			}
 			
 			messageBox(out);
