@@ -24,6 +24,8 @@ public class SearchGUI extends GBFrame {
 	JButton binSearchButton = addButton("Binary Search",3,2,1,1);
 	JButton printButton = addButton("Print",3,3,1,1);
 	
+	JTextArea outputArea = addTextArea("",4,1,4,1);
+	
 	public SearchGUI() {
 		seqSearchButton.setEnabled(false);
 		binSearchButton.setEnabled(false);
@@ -32,6 +34,7 @@ public class SearchGUI extends GBFrame {
 	
 	int arrcount = 0;
 	People[] finalarr;
+	String output = "";
 	
 	
 	public void buttonClicked(JButton button) {
@@ -59,6 +62,8 @@ public class SearchGUI extends GBFrame {
 				
 			}
 			
+			output += nameField.getText() + ", " + ageField.getNumber() + "\n\n";
+			outputArea.setText(output);
 			
 			arrcount++;
 			
