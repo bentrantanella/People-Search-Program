@@ -32,10 +32,9 @@ public class SearchGUI extends GBFrame {
 		printButton.setEnabled(false);
 	}
 	
-	int arrcount = 0;
-	People[] finalarr;
 	String output = "";
 	
+	ArrayList a = new ArrayList();
 	
 	public void buttonClicked(JButton button) {
 		if (button == addButton) {
@@ -44,28 +43,12 @@ public class SearchGUI extends GBFrame {
 				return;
 			}
 			
-			People p = new People(ageField.getNumber(), nameField.getText());
-			if (arrcount == 0) {
-				finalarr = new People[1];
-				finalarr[0] = p;
-			} else {
-				People[] temparr = new People[arrcount];
-				for(int i = 0; i < finalarr.length; i++)
-					temparr[i] = finalarr[i];
-				
-				finalarr = new People[arrcount + 1];
-				for(int i = 0; i < finalarr.length - 1; i++)
-					finalarr[i] = temparr[i];
-				
-				finalarr[arrcount] = p;
-				
-				
-			}
+			People person = new People(ageField.getNumber(), nameField.getText());
+			
+			a.addPerson(person);
 			
 			output += nameField.getText() + ", " + ageField.getNumber() + "\n\n";
 			outputArea.setText(output);
-			
-			arrcount++;
 			
 			seqSearchButton.setEnabled(true);
 			binSearchButton.setEnabled(true);
@@ -82,13 +65,15 @@ public class SearchGUI extends GBFrame {
 		}
 		
 		if (button == printButton) {
-			String output = "";
+			a.sort();
+			People[] arr = a.getFinalarr();
 			
-			for(int i = 0; i < finalarr.length; i++) {
-				output += finalarr[i].getName() + ", " + finalarr[i].getAge() + "\n";
+			String out = "";
+			for(int i = 0; i < arr.length; i++) {
+				out += arr[i].getName();
 			}
 			
-			messageBox(output);
+			messageBox(out);
 		}
 	}
 	
