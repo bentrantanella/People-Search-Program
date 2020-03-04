@@ -40,7 +40,7 @@ public class SearchGUI extends GBFrame {
 	
 	public void buttonClicked(JButton button) {
 		if (button == addButton) {
-			if (isWhitespace(nameField.getText()) || ageField.getNumber() <= 0) {
+			if (isWhitespace(nameField.getText()) || ageField.getNumber() <= 0 || !ageField.isValidNumber()) {
 				messageBox("Invalid Inputs");
 				return;
 			}
@@ -69,12 +69,17 @@ public class SearchGUI extends GBFrame {
 		}
 		
 		if (button == seqSearchButton) {
+			if (isWhitespace(searchField.getText())) {
+				messageBox("Invalid input");
+				return;
+			}
+			
 			People p = a.searchArray(false, searchField.getText());
 			PersonFound f = new PersonFound(this, a.getFinalarr(), a, false, p);
 			
 			
 			People[] arr = a.getFinalarr();
-			System.out.println(arr.length);
+			
 			String out = "";
 			for(int i = 0; i < arr.length; i++) {
 				out += arr[i].getName() + ", " + arr[i].getAge() + "\n\n";
@@ -86,12 +91,17 @@ public class SearchGUI extends GBFrame {
 		}
 		
 		if (button == binSearchButton) {
+			if (isWhitespace(searchField.getText())) {
+				messageBox("Invalid input");
+				return;
+			}
+			
 			People p = a.searchArray(true,  searchField.getText());
 			PersonFound f = new PersonFound(this, a.getFinalarr(), a, true, p);
 			
 			
 			People[] arr = a.getFinalarr();
-			System.out.println(arr.length);
+			
 			String out = "";
 			for(int i = 0; i < arr.length; i++) {
 				out += arr[i].getName() + ", " + arr[i].getAge() + "\n\n";
@@ -111,6 +121,8 @@ public class SearchGUI extends GBFrame {
 				out += arr[i].getName() + ", " + arr[i].getAge() + "\n\n";
 			}
 			
+			if (out.equals(""))
+				out = "There are no people in the array";
 			messageBox(out);
 		}
 	}

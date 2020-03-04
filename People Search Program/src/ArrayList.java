@@ -132,8 +132,6 @@ public class ArrayList {
 					middle = (end - start) / 2;
 				}
 				
-				
-				
 			}
 			
 			return null;

@@ -78,12 +78,31 @@ public class PersonFound extends GBDialog {
 		}
 		
 		if (button == nchangeButton) {
+			if (isWhitespace(nameField.getText())) {
+				messageBox("Invalid input");
+				return;
+			}
 			person.setName(nameField.getText());
 			
+			
+			nameField.setText("");
 		}
 		
 		if (button == achangeButton) {
+			if (!ageField.isValidNumber() || ageField.getNumber() <= 0) {
+				messageBox("Invalid Input");
+			}
 			person.setAge(ageField.getNumber());
+			
+			ageField.setNumber(0);
 		}
+	}
+	
+	public boolean isWhitespace(String s) {
+		for(int i = 0; i < s.length(); i++) {
+			if (s.charAt(i) != ' ')
+				return false;
+		}
+		return true;
 	}
 }
