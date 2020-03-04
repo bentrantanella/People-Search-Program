@@ -3,10 +3,34 @@ public class ArrayList {
 	
 	int sizecount;
 	People[] finalarr;
+	int bincount;
+	int seqcount;
 	
 	
 	public ArrayList() {
 		sizecount = 0;
+		bincount = 0;
+		seqcount = 0;
+	}
+
+
+	public int getBincount() {
+		return bincount;
+	}
+
+
+	public void setBincount(int bincount) {
+		this.bincount = bincount;
+	}
+
+
+	public int getSeqcount() {
+		return seqcount;
+	}
+
+
+	public void setSeqcount(int seqcount) {
+		this.seqcount = seqcount;
 	}
 
 
@@ -65,6 +89,63 @@ public class ArrayList {
 	}
 	
 	public void removePerson(People p) {
+		People[] temp = new People[finalarr.length];
+		for(int i = 0; i < finalarr.length; i++)
+			temp[i] = finalarr[i];
 		
+		finalarr = new People[sizecount - 1];
+		int count = 0;
+		for(int i = 0; i < temp.length; i++) {
+			if (p == temp[i])
+				continue;
+			else {
+				finalarr[count] = temp[i];
+				count++;
+			}
+		
+		}
+		sizecount--;
+	}
+	
+	public People searchArray(boolean isbin, String n) {
+		bincount = 0;
+		seqcount = 0;
+		
+		if (isbin == true) {
+			sort();
+			
+			int start = 0;
+			int end = finalarr.length - 1;
+			int middle = (end - start) / 2;
+			int compareval;
+			
+			while (finalarr.length > 0) {
+				bincount++;
+				compareval = finalarr[middle].getName().toLowerCase().compareTo(n.toLowerCase());
+				if (compareval == 0) {
+					return finalarr[middle];
+				} else if (compareval > 0) {
+					end = middle - 1;
+					middle = (end - start) / 2;
+				} else {
+					start = middle + 1;
+					middle = (end - start) / 2;
+				}
+				
+				
+				
+			}
+			
+			return null;
+			
+		} else {
+			for(int i = 0; i < finalarr.length; i++) {
+				seqcount++;
+				if (finalarr[i].getName().equalsIgnoreCase(n))
+					return finalarr[i];
+			}
+			
+			return null;
+		}
 	}
 }

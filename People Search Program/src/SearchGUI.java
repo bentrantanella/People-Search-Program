@@ -49,22 +49,57 @@ public class SearchGUI extends GBFrame {
 			
 			a.addPerson(person);
 			
-			output += nameField.getText() + ", " + ageField.getNumber() + "\n\n";
-			outputArea.setText(output);
+			People[] arr = a.getFinalarr();
+			System.out.println(arr.length);
+			String out = "";
+			for(int i = 0; i < arr.length; i++) {
+				out += arr[i].getName() + ", " + arr[i].getAge() + "\n\n";
+			}
+			
+			outputArea.setText(out);
 			
 			seqSearchButton.setEnabled(true);
 			binSearchButton.setEnabled(true);
 			printButton.setEnabled(true);
 			searchField.setEditable(true);
 			
+			nameField.setText("");
+			ageField.setNumber(0);
+			
 		}
 		
 		if (button == seqSearchButton) {
+			People p = a.searchArray(false, searchField.getText());
+			PersonFound f = new PersonFound(this, a.getFinalarr(), a, false, p);
 			
+			
+			People[] arr = a.getFinalarr();
+			System.out.println(arr.length);
+			String out = "";
+			for(int i = 0; i < arr.length; i++) {
+				out += arr[i].getName() + ", " + arr[i].getAge() + "\n\n";
+			}
+			
+			outputArea.setText(out);
+			
+			searchField.setText("");
 		}
 		
 		if (button == binSearchButton) {
+			People p = a.searchArray(true,  searchField.getText());
+			PersonFound f = new PersonFound(this, a.getFinalarr(), a, true, p);
 			
+			
+			People[] arr = a.getFinalarr();
+			System.out.println(arr.length);
+			String out = "";
+			for(int i = 0; i < arr.length; i++) {
+				out += arr[i].getName() + ", " + arr[i].getAge() + "\n\n";
+			}
+			
+			outputArea.setText(out);
+			
+			searchField.setText("");
 		}
 		
 		if (button == printButton) {
