@@ -114,28 +114,26 @@ public class ArrayList {
 		if (isbin == true) {
 			sort();
 			
-			int start = 0;
-			int end = finalarr.length - 1;
-			int middle = (end - start) / 2;
+			int left = 0;
+			int right = finalarr.length - 1;
+			
 			int compareval;
 			
-			while (finalarr.length > 0) {
+			while (left <= right) {
+				int middle = left + (right - left) / 2;
 				bincount++;
 				compareval = finalarr[middle].getName().toLowerCase().compareTo(n.toLowerCase());
 				if (compareval == 0) {
 					return finalarr[middle];
 				} else if (compareval > 0) {
-					end = middle - 1;
-					middle = (end - start) / 2;
+					right = middle - 1;
+					
 				} else {
-					start = middle + 1;
-					middle = (end - start) / 2;
+					left = middle + 1;
 				}
 				
 			}
-			
 			return null;
-			
 		} else {
 			for(int i = 0; i < finalarr.length; i++) {
 				seqcount++;

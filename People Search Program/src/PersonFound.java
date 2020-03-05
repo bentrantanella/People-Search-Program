@@ -12,6 +12,8 @@ public class PersonFound extends GBDialog {
 	
 	public PersonFound(JFrame frm, People[] p, ArrayList a, boolean b, People s) {
 		super(frm);
+		
+		
 		people = p;
 		array = a;
 		isbin = b;

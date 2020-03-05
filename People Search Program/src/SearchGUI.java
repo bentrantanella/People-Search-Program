@@ -50,7 +50,7 @@ public class SearchGUI extends GBFrame {
 			a.addPerson(person);
 			
 			People[] arr = a.getFinalarr();
-			System.out.println(arr.length);
+			
 			String out = "";
 			for(int i = 0; i < arr.length; i++) {
 				out += arr[i].getName() + ", " + arr[i].getAge() + "\n\n";
